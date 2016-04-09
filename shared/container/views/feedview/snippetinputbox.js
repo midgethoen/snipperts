@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 function SnippetInputBox() {
   return (
     <div>
-      IMPLEMENT MEEE :((
+      IMPLEMENT MEEE :(())
     </div>
   );
 }

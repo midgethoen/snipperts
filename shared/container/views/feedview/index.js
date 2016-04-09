@@ -9,10 +9,10 @@ console.log(SnippetInputBox);
 function FeedView(props) {
   return (
     <div>
+      <SnippetFeed snippets={props.snippets} />
+      <SnippetInputBox />
     </div>
   );
-  // <SnippetFeed snippets={props.snippets} />
-  // <SnippetInputBox />
 }
 
 FeedView.need = [
