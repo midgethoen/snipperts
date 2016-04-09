@@ -47,7 +47,7 @@ export function deleteSnippet(snippet) {
   };
 }
 
-export function addSnippets(snippets) {
+export function replaceSnippets(snippets) {
   return {
     type: ActionTypes.ADD_SNIPPETS,
     snippets,
@@ -58,7 +58,7 @@ export function fetchSnippets() {
   return (dispatch) => {
     return fetch(`${baseURL}/api/snippets`).
       then((response) => response.json()).
-      then((response) => dispatch(addSnippets(response.snippets)));
+      then((response) => dispatch(replaceSnippets(response.snippets)));
   };
 }
 

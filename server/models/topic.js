@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const topicSchema = new Schema({
   tag: { type: String, unique: true },
-  type: { type: String }
+  type: { type: String },
 });
 
 topicSchema.plugin(timestamps);

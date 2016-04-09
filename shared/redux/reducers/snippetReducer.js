@@ -3,7 +3,7 @@ import * as ActionTypes from '../constants';
 const initialState = { snippets: [], snippet: null };
 
 const snippetReducer = (state = initialState, action) => {
-  const { type, snippet } = action;
+  const { type, snippet, snippets } = action;
   switch (type) {
     case ActionTypes.ADD_SNIPPET :
       return {
@@ -33,12 +33,19 @@ const snippetReducer = (state = initialState, action) => {
     case ActionTypes.DELETE_SNIPPET :
       return {
         snippets: state.snippets.filter((s) => s._id !== snippet._id),
+        snippet: state.snippet,
+      };
+
+    case ActionTypes.REPLACE_SNIPPETS :
+      return {
+        snippets,
+        snippet: state.snippet,
       };
 
     case ActionTypes.CHANGE_SELECTED_SNIPPET :
       return {
         snippets: state.snippets,
-        snippet: snippet.snippet,
+        snippet: snippets.snippet,
       };
 
     default:
