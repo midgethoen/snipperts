@@ -76,22 +76,6 @@ export function fetchSnippets() {
   };
 }
 
-export function fetchUsers() {
-  return (dispatch) => {
-    return fetch(`${baseURL}/api/users`).
-      then((response) => response.json()).
-      then((response) => dispatch(replaceUsers(response)));
-  }
-}
-
-export function fetchTopics() {
-  return (dispatch) => {
-    return fetch(`${baseURL}/api/topics`).
-      then((response) => response.json()).
-      then((response) => dispatch(replaceTopics(response)));
-  }
-}
-
 export function deleteSnippetRequest(snippet) {
   return (dispatch) => {
     fetch(`${baseURL}/api/snippet/${snippet._id}`, {
