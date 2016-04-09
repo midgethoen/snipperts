@@ -1,5 +1,13 @@
+/**
+ * Snippet
+ */
 export const ADD_SNIPPET = 'ADD_SNIPPET';
 export const CHANGE_SELECTED_SNIPPET = 'CHANGE_SELECTED_SNIPPET';
 export const ADD_SNIPPET_REQUEST = 'ADD_SNIPPET_REQUEST';
 export const ADD_SELECTED_SNIPPET = 'ADD_SELECTED_SNIPPET';
 export const DELETE_SNIPPET = 'DELETE_SNIPPET';
+
+/**
+ * Suggestions
+ */
+export const REPLACE_SUGGESTIONS = 'REPLACE_SUGGESTIONS';
