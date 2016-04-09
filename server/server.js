@@ -109,7 +109,6 @@ const renderFullPage = (html, initialState) => {
   `;
 };
 
-import requiresLogin from './middlewares';
 
 const renderError = err => {
   const softTab = '&#32;&#32;&#32;&#32;';

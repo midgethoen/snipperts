@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../../redux/actions';
 import SnippetFeed from './snippetfeed';
@@ -20,6 +20,7 @@ FeedView.need = [
 ];
 FeedView.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  snippets: PropTypes.arrayOf(PropTypes.object),
 };
 
 

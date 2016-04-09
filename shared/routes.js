@@ -2,7 +2,6 @@ import { Route, IndexRoute } from 'react-router';
 import React from 'react';
 import App from './container/App';
 import PostContainer from './container/PostContainer/PostContainer';
-import PostDetailView from './container/PostDetailView/PostDetailView';
 import { LoginView } from './container/views';
 
 const routes = (

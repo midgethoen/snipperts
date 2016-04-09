@@ -1,12 +1,12 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import Snippet from './snippet';
 
-function SnippetFeed({ snippets}) {
+function SnippetFeed({ snippets }) {
   return (
     <div>
     {
       // XXX: needs to be grouped by user/time
-      snippets.map(snippet => <Snippet snippet={snippet} /> )
+      snippets.map(snippet => <Snippet snippet={snippet} />)
     }
     </div>
   );
