@@ -1,42 +1,44 @@
 import * as ActionTypes from '../constants/constants';
 
-const initialState = { posts: [], post: null };
+const initialState = { snippets: [], snippet: null };
 
-const postReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionTypes.ADD_POST :
+const snippetReducer = (state = initialState, action) => {
+  const { type, snippet } = action;
+  switch (type) {
+    case ActionTypes.ADD_SNIPPET :
       return {
-        posts: [{
-          name: action.name,
-          title: action.title,
-          content: action.content,
-          slug: action.slug,
-          cuid: action.cuid,
-          _id: action._id,
-        }, ...state.posts],
-        post: state.post };
-
-    case ActionTypes.CHANGE_SELECTED_POST :
-      return {
-        posts: state.posts,
-        post: action.slug,
+        snippets: [{
+          user: snippet.userId,
+          text: snippet.text,
+          description: snippet.description,
+          topics: snippet.topics,
+          _id: snippet._id
+        }, ...state.snippets],
+        snippet: state.snippet,
       };
 
-    case ActionTypes.ADD_POSTS :
+    case ActionTypes.UPDATE_SNIPPET :
       return {
-        posts: action.posts,
-        post: state.post,
+        snippets: state.snippets.map((s) => {
+          if (s._id === snippet._id) {
+            return {
+              ...snippet,
+            };
+          }
+          return s;
+        }),
+        snippet: state.snippet,
       };
 
-    case ActionTypes.ADD_SELECTED_POST :
+    case ActionTypes.DELETE_SNIPPET :
       return {
-        post: action.post,
-        posts: state.posts,
+        snippets: state.snippets.filter((s) => s._id !== s._id),
       };
 
-    case ActionTypes.DELETE_POST :
+    case ActionTypes.CHANGE_SELECTED_SNIPPET :
       return {
-        posts: state.posts.filter((post) => post._id !== action.post._id),
+        snippets: state.snippets,
+        snippet: snippet.snippet,
       };
 
     default:
@@ -44,4 +46,4 @@ const postReducer = (state = initialState, action) => {
   }
 };
 
-export default postReducer;
+export default snippetReducer;
