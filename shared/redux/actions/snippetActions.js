@@ -24,7 +24,7 @@ export function changeSelectedSnippet(snippetId) {
   };
 }
 
-export function addSnippetRequest(snippet) {
+export function createSnippet(snippet) {
   return (dispatch) => {
     fetch(`${baseURL}/api/snippet`, {
       method: 'post',
