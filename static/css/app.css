@@ -1,221 +1,150 @@
-*{
+/* plain css reset */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
 	margin: 0;
 	padding: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	line-height: normal;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
-::-webkit-input-placeholder {
-	color:#aaa;
-	font-weight: 300;
-}
-::-moz-placeholder {
-	color:#aaa;
-	font-weight: 300;
-}
-:-ms-input-placeholder {
-	color:#aaa;
-	font-weight: 300;
-}
-input:-moz-placeholder {
-	color:#aaa;
-	font-weight: 300;
-}
-
-body {
-	background: #FFF;
-	font-family: 'Lato', sans-serif;
-	font-size: 16px;
-}
-
-.subtitle {
-	margin-top: 0;
-	margin-left: 0;
-	color: #9E9E9E;
-}
-
-.container {
-	max-width: 980px;
-	width: 100%;
-	padding: 15px;
-	margin: 0 auto;
-}
-
-.form {
-	display: none;
-	background: #FAFAFA;
-	padding: 32px 0;
-	border: 1px solid #eee;
-	border-radius: 4px;
-}
-
-.form-content{
-	width: 100%;
-	max-width: 600px;
-	margin: auto;
-	font-size: 14px;
-}
-
-.form .form-title{
-	font-size: 16px;
-	font-weight: 700;
-	margin-bottom: 16px;
-	color: #757575;
-}
-
-.form .form-field{
-	width: 100%;
-	margin-bottom: 16px;
-	font-family: 'Lato', sans-serif;
-	font-size: 16px;
-	line-height: normal;
-	padding: 12px 16px;
-	border-radius: 4px;
-	border: 1px solid #ddd;
-	outline: none;
-	color: #212121;
-}
-
-.form textarea.form-field{
-	min-height: 200px;
-}
-
-.form .post-submit-button{
-	display: inline-block;
-	padding: 8px 16px;
-	font-size: 18px;
-	color: #FFF;
-	background: #03A9F4;
-	text-decoration: none;
-	border-radius: 4px;
-}
-
-.form.appear {
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-
-.single-post {
-	margin: 20px 0;
-	padding: 15px;
-	border-radius: 2px;
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-.single-post .post-title{
-	font-size: 28px;
-	margin-bottom: 16px;
-	font-weight: 400;
-	color: #616161;
+/* actual project */
+* {
+	box-sizing: border-box;
 }
-
-.single-post.post-detail .post-title{
-	font-size: 42px;
-	color: #454545;
+body {
+	font-family: "Lato";
+	margin: 0;
+	line-height: 1.2em;
+	color: #333;
 }
-
-.single-post .post-title a{
-	text-decoration: none;
-	color: #616161;
+main {
+	width: 50%;
+	max-width: 50em;
+	margin-left: 50%;
+	padding-left: 1em;
+	padding-right: 1em;
+	position: relative;
 }
-
-.single-post .author-name{
-	font-size: 16px;
-	margin-bottom: 16px;
-	color: #757575;
-}
-
-.single-post .post-desc{
-	font-size: 14px;
-	color: #888;
-	margin-bottom: 8px;
-}
-
-.single-post.post-detail .post-desc{
-	font-size: 16px;
-	color: #555;
-}
-
-.single-post .post-action a{
-	color: #555;
-	text-decoration: none;
-	font-size: 14px;
-	font-style: italic;
-}
-
-.single-post .post-action a:hover{
-	color: #EF5350;
-}
-
-.single-post .divider{
-	border: 0;
-    height: 1px;
-    background: #ccc;
-    width: 250px;
-    margin: 32px auto 0;
-}
-
-.header {
+aside {
+	position: fixed;
+	width: 50%;
 	background-color: #eee;
-	background-image: url('/img/header-bk.png');
-	background-position: center;
-	background-size: cover;
-	border-bottom: 1px solid #ccc;
+	top: 0;
+	bottom: 0;
 }
-
-.header .header-content {
-	width: 100%;
-	max-width: 980px;
-	margin: auto;
-	padding: 64px 16px;
-	overflow: auto;
+h1 {
+	font-size: 2em;
+	line-height: 2.5em;
 }
-
-.site-title {
-	font-weight: 300;
-	font-size: 42px;
+h2 {
+	margin: 0;
+	font-weight: bold;
+}
+article {
+	padding: 0.5em;
+}
+article:hover {
+	background-color: #f0f0f0;
+	border-radius: 0.5em;
+}
+article > a > img {
+	border-radius: 50%;
 	float: left;
+	width: 2.5em;
+	margin-right: 1em;
 }
-
-.site-title a{
+article time {
+	font-weight: 100;
+}
+article > p {
+	margin-left: 3.5em;
+}
+a {
 	text-decoration: none;
-	color: #FFF;
+	color: #336699;
+}
+a.tag {
+	background-color: #eee;
+	padding: 0em 0.5em;
+	border-radius: 0.5em;
+}
+a.project {
+	background-color: #eef;
+}
+a.person {
+	background-color: #efe;
+}
+section.form {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	width: 50%;
+	max-width: 50em;
+	background-color: #fff;
+	padding: 1em;
+}
+textarea {
+	width: 100%;
+	min-height: 5em;
+	font-family: "Lato";
+	font-size: 1em;
+	border: 2px solid #eee;
+	border-radius: 0.5em;
+	padding: 0.5em;
+}
+textarea:focus {
+	border: 2px solid #ccc;
+	outline: none;
 }
 
-.add-post-button {
-	display: inline-block;
-    color: #FFF;
-    background: #03A9F4;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 1000px;
-    float: right;
-}
-
-.footer{
-	text-align: center;
-	padding: 56px 0;
-	background-color: #FFF;
-	background-image: url('/img/header-bk.png');
-	background-position: center;
-	background-size: cover;
-}
-
-.footer p{
-	margin: 0 0 8px 0;
-	font-size: 14px;
-	color: #FFF;
-}
-
-.footer a{
-	color: #FFF;
-	text-decoration: none;
-	font-weight: 700;
-}
-
-@media (max-width: 767px){
-	.add-post-button{
-		float: left;
-		margin-top: 16px;
+@media screen and (max-width: 800px) {
+	aside {
+		display: none;
+	}
+	main, section.form {
+		margin-left: 0;
+		width: 100%;
+		left: 0;
 	}
 }
