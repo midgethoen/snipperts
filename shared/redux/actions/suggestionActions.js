@@ -15,6 +15,6 @@ export function fetchSuggestions() {
   return (dispatch) => {
     return fetch(`${baseURL}/api/suggestions`).
       then((response) => response.json()).
-      then((response) => dispatch(replaceSuggestions(response.suggestions)));
+      then((response) => dispatch(replaceSuggestions(response)));
   };
 }

@@ -15,6 +15,6 @@ export function fetchUsers() {
   return (dispatch) => {
     return fetch(`${baseURL}/api/users`).
       then((response) => response.json()).
-      then((response) => dispatch(replaceUsers(response.users)));
+      then((response) => dispatch(replaceUsers(response)));
   };
 }
