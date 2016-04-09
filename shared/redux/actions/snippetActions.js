@@ -54,20 +54,6 @@ export function replaceSnippets(snippets) {
   };
 }
 
-export function replaceUsers(users) {
-  return {
-    type: ActionTypes.REPLACE_USERS,
-    users,
-  };
-}
-
-export function replaceTopics(topics) {
-  return {
-    type: ActionTypes.REPLACE_TOPICS,
-    topics,
-  };
-}
-
 export function fetchSnippets() {
   return (dispatch) => {
     return fetch(`${baseURL}/api/snippets`).
