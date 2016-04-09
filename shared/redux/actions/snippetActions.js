@@ -49,8 +49,22 @@ export function deleteSnippet(snippet) {
 
 export function replaceSnippets(snippets) {
   return {
-    type: ActionTypes.ADD_SNIPPETS,
+    type: ActionTypes.REPLACE_SNIPPETS,
     snippets,
+  };
+}
+
+export function replaceUsers(users) {
+  return {
+    type: ActionTypes.REPLACE_USERS,
+    users,
+  };
+}
+
+export function replaceTopics(topics) {
+  return {
+    type: ActionTypes.REPLACE_TOPICS,
+    topics,
   };
 }
 
@@ -58,8 +72,24 @@ export function fetchSnippets() {
   return (dispatch) => {
     return fetch(`${baseURL}/api/snippets`).
       then((response) => response.json()).
-      then((response) => dispatch(replaceSnippets(response.snippets)));
+      then((response) => dispatch(replaceSnippets(response)));
   };
+}
+
+export function fetchUsers() {
+  return (dispatch) => {
+    return fetch(`${baseURL}/api/users`).
+      then((response) => response.json()).
+      then((response) => dispatch(replaceUsers(response)));
+  }
+}
+
+export function fetchTopics() {
+  return (dispatch) => {
+    return fetch(`${baseURL}/api/topics`).
+      then((response) => response.json()).
+      then((response) => dispatch(replaceTopics(response)));
+  }
 }
 
 export function deleteSnippetRequest(snippet) {

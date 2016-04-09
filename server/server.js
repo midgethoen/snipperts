@@ -121,14 +121,15 @@ const renderError = err => {
 // Server Side Rendering based on routes matched by React-router.
 // app.use(requiresLogin);
 app.use((req, res, next) => {
-  // console.log(JSON.stringify(req.account, null, 2));
-  // console.log(Object.keys(req));
   console.log({
     isAuthenticated: req.isAuthenticated(),
+    user: req.user,
+    image: req.user.google.image,
   });
 
   next();
-})
+});
+
 app.use((req, res, next) => {
   if (req.url !== '/login' && !req.isAuthenticated()) {
     return res.redirect(302, '/login');
@@ -146,7 +147,7 @@ app.use((req, res, next) => {
       return next();
     }
 
-    const initialState = { posts: [], post: {} };
+    const initialState = { };
 
     const store = configureStore(initialState);
 

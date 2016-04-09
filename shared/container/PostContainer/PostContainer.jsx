@@ -18,7 +18,7 @@ class PostContainer extends Component {
 
   componentDidMount() {
     if (this.props.posts.length === 0) {
-      // this.props.dispatch(Actions.fetchPosts());
+      this.props.dispatch(Actions.fetchPosts());
     }
   }
 
