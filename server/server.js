@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
 import logger from 'morgan';
+import { configurePassport } from './middlewares/passport';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -30,7 +31,7 @@ import { match, RouterContext } from 'react-router';
 // Import required modules
 import routes from '../shared/routes';
 import { fetchComponentData } from './util/fetchData';
-import posts from './routes/post.routes';
+import snippets from './routes/snippet.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
 
@@ -49,7 +50,26 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../static')));
-app.use('/api', posts);
+
+// use passport session
+const passport = configurePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/api/snippets', snippets);
+app.get('/auth/google',
+  passport.authenticate('google', {
+    failureRedirect: '/login',
+    scope: [
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email',
+    ],
+  }), () => {});
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/login',
+  }), () => {});
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
