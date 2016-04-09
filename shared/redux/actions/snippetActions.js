@@ -1,4 +1,4 @@
-import * as ActionTypes from '../constants/constants';
+import * as ActionTypes from '../constants';
 import Config from '../../../server/config';
 import fetch from 'isomorphic-fetch';
 
