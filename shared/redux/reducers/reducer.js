@@ -12,7 +12,7 @@ const snippetReducer = (state = initialState, action) => {
           text: snippet.text,
           description: snippet.description,
           topics: snippet.topics,
-          _id: snippet._id
+          _id: snippet._id,
         }, ...state.snippets],
         snippet: state.snippet,
       };
