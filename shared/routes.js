@@ -1,12 +1,16 @@
 import { Route, IndexRoute } from 'react-router';
 import React from 'react';
 import App from './container/App';
-import PostContainer from './container/PostContainer/PostContainer';
-import { LoginView } from './container/views';
+import {
+  LoginView,
+  FeedView,
+} from './container/views';
+
+console.log('deffff', LoginView, FeedView);
 
 const routes = (
   <Route path="/" component={App} >
-    <IndexRoute component={PostContainer} />
+    <IndexRoute component={FeedView} />
     <Route path="/login" component={LoginView}/>
   </Route>
 );

@@ -34,6 +34,8 @@ import { match, RouterContext } from 'react-router';
 import routes from '../shared/routes';
 import { fetchComponentData } from './util/fetchData';
 import snippets from './routes/snippet.routes';
+import topics from './routes/topic.routes';
+import users from './routes/user.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
 
@@ -68,6 +70,11 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../static')));
 
 app.use('/api/snippets', snippets);
+app.use('/api/users', users);
+app.use('/api/topics', topics);
+
+const notApi = /^(?!\/api\/)/;
+
 app.get('/auth/google',
   passport.authenticate('google', {
     failureRedirect: '/login',
@@ -109,6 +116,7 @@ const renderFullPage = (html, initialState) => {
   `;
 };
 
+// import requiresLogin from './middlewares';
 
 const renderError = err => {
   const softTab = '&#32;&#32;&#32;&#32;';
@@ -120,16 +128,16 @@ const renderError = err => {
 // Server Side Rendering based on routes matched by React-router.
 // app.use(requiresLogin);
 app.use((req, res, next) => {
+  console.log(req.url, req.isAuthenticated());
   console.log({
     isAuthenticated: req.isAuthenticated(),
-    user: req.user,
-    image: req.user.google.image,
+    // user: req.user,
+    // image: req.user.google.image,
   });
-
   next();
 });
 
-app.use((req, res, next) => {
+app.use(notApi, (req, res, next) => {
   if (req.url !== '/login' && !req.isAuthenticated()) {
     return res.redirect(302, '/login');
   }

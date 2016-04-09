@@ -1,16 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as Actions from '../../redux/actions';
+import * as Actions from '../../../redux/actions';
 import SnippetFeed from './snippetfeed';
 import SnippetInputBox from './snippetinputbox';
+
+console.log(SnippetInputBox);
 
 function FeedView(props) {
   return (
     <div>
-      <SnippetFeed snippets={props.snippets} />
-      <SnippetInputBox />
     </div>
   );
+  // <SnippetFeed snippets={props.snippets} />
+  // <SnippetInputBox />
 }
 
 FeedView.need = [

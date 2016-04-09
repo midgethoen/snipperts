@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function LoginView() {
+export default function LoginView() {
   return (
     <a href="/auth/google">Sign in with Google</a>
   );

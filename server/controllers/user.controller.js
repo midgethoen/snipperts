@@ -1,4 +1,4 @@
-import User from '../models/users';
+import User from '../models/user';
 import { handleError } from '../util';
 
 export function getUsers(req, res) {

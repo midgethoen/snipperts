@@ -16,7 +16,7 @@ SnippetFeed.propTypes = {
   snippets: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
-      user: PropTypes.user.isRequired,
+      user: PropTypes.object.isRequired,
     })
   ),
 };
