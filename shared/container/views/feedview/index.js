@@ -4,8 +4,6 @@ import * as Actions from '../../../redux/actions';
 import SnippetFeed from './snippetfeed';
 import SnippetInputBox from './snippetinputbox';
 
-console.log(SnippetInputBox);
-
 function FeedView(props) {
   return (
     <div>

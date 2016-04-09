@@ -6,8 +6,6 @@ import {
   FeedView,
 } from './container/views';
 
-console.log('deffff', LoginView, FeedView);
-
 const routes = (
   <Route path="/" component={App} >
     <IndexRoute component={FeedView} />

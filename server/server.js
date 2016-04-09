@@ -127,15 +127,15 @@ const renderError = err => {
 
 // Server Side Rendering based on routes matched by React-router.
 // app.use(requiresLogin);
-app.use((req, res, next) => {
-  console.log(req.url, req.isAuthenticated());
-  console.log({
-    isAuthenticated: req.isAuthenticated(),
-    // user: req.user,
-    // image: req.user.google.image,
-  });
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(req.url, req.isAuthenticated());
+//   console.log({
+//     isAuthenticated: req.isAuthenticated(),
+//     // user: req.user,
+//     // image: req.user.google.image,
+//   });
+//   next();
+// });
 
 app.use(notApi, (req, res, next) => {
   if (req.url !== '/login' && !req.isAuthenticated()) {
