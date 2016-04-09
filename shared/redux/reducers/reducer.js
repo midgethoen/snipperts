@@ -32,7 +32,7 @@ const snippetReducer = (state = initialState, action) => {
 
     case ActionTypes.DELETE_SNIPPET :
       return {
-        snippets: state.snippets.filter((s) => s._id !== s._id),
+        snippets: state.snippets.filter((s) => s._id !== snippet._id),
       };
 
     case ActionTypes.CHANGE_SELECTED_SNIPPET :
