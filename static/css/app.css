@@ -1,150 +1,160 @@
-/* plain css reset */
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/* actual project */
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
-body {
-	font-family: "Lato";
-	margin: 0;
-	line-height: 1.2em;
-	color: #333;
+body{
+  font-size: 15px;
+  font-family: "Open Sans";
+  background-color: #FDFDFD;
 }
-main {
-	width: 50%;
-	max-width: 50em;
-	margin-left: 50%;
-	padding-left: 1em;
-	padding-right: 1em;
-	position: relative;
+
+nav img {
+  height: 3em;
 }
-aside {
-	position: fixed;
-	width: 50%;
-	background-color: #eee;
-	top: 0;
-	bottom: 0;
+nav .profile {
+  border-radius: 10%;
 }
-h1 {
-	font-size: 2em;
-	line-height: 2.5em;
+nav .logo {
+  float: right;
 }
-h2 {
-	margin: 0;
-	font-weight: bold;
+aside{
+  display: none;
+}
+.container-fluid {
+  margin-top: 5em;
+}
+.feed {
+  margin-bottom: 200px;
 }
 article {
-	padding: 0.5em;
+  display: flex;
+  align-content: flex-end;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
-article:hover {
-	background-color: #f0f0f0;
-	border-radius: 0.5em;
+.message {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #c7c7c7;
+  border-radius: 0.5em;
+  padding: 1em;
+  color: #84888D;
+  padding-bottom: 0;
+  line-height: 2em;
 }
-article > a > img {
-	border-radius: 50%;
-	float: left;
-	width: 2.5em;
-	margin-right: 1em;
+.message:before {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: -15px;
+  height: 30px;
+  width: 15px;
+  border-color: transparent #c7c7c7;
+  border-style: solid;
+  border-width: 15px 15px 15px 0px;
 }
-article time {
-	font-weight: 100;
-}
-article > p {
-	margin-left: 3.5em;
-}
-a {
-	text-decoration: none;
-	color: #336699;
-}
-a.tag {
-	background-color: #eee;
-	padding: 0em 0.5em;
-	border-radius: 0.5em;
-}
-a.project {
-	background-color: #eef;
-}
-a.person {
-	background-color: #efe;
-}
-section.form {
-	position: fixed;
-	bottom: 0;
-	left: 50%;
-	width: 50%;
-	max-width: 50em;
-	background-color: #fff;
-	padding: 1em;
-}
-textarea {
-	width: 100%;
-	min-height: 5em;
-	font-family: "Lato";
-	font-size: 1em;
-	border: 2px solid #eee;
-	border-radius: 0.5em;
-	padding: 0.5em;
-}
-textarea:focus {
-	border: 2px solid #ccc;
-	outline: none;
+.message:after {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: -14px;
+  height: 30px;
+  width: 15px;
+  border-color: transparent #fff;
+  border-style: solid;
+  border-width: 15px 15px 15px 0px;
 }
 
-@media screen and (max-width: 800px) {
-	aside {
-		display: none;
-	}
-	main, section.form {
-		margin-left: 0;
-		width: 100%;
-		left: 0;
-	}
+.byline {
+  text-align: right;
+  font-size: 0.8em;
+}
+
+figure {
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+}
+figure a {
+  display: block;
+  margin-right: 1em;
+  margin-left: auto;
+}
+figure img {
+  background-color: #efefef;
+  border-radius: 50%;
+  height: 70px;
+}
+
+ul {
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+li:before {
+  content: "• ";
+  font-size: 1.5em;
+  position: relative;
+  top: 0.15em;
+  color: red; /* or whatever color you prefer */
+}
+
+article[data-squad=cas] li:before {
+  color: orange;
+}
+article[data-squad=ccs] li:before {
+  color: red;
+}
+article[data-squad=rs] li:before {
+  color: brown;
+}
+article[data-squad=leadership] li:before {
+  color: blue;
+}
+article[data-squad=cavalry] li:before {
+  color: yellow;
+}
+
+a.tag {
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+  font-size: 0.9em;
+  height: 1em;
+}
+a.tag.project {
+  background-color: #90B7FF;
+  color: #fff;
+}
+a.tag.person {
+  background-color: #B5D26B;
+  color: #fff;
+}
+a.tag.squad {
+  background-color: #FF7474;
+  color: #fff;
+}
+
+
+.snippet-input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0.5em 1em;
+  height: 200px;
+  background-color: #ECECEC;
+  width: 100%;
+}
+textarea {
+  min-height: 7em;
+  border: 2px solid #eee:
+  outline: none;
+}
+textarea:focus {
+  border: 2px solid #ccc;
+	outline: none;
 }
