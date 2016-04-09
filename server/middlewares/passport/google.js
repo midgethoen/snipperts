@@ -14,12 +14,13 @@ const googleStrategy = new GoogleStrategy(
     callbackURL: config.google.callbackURL,
   },
   (accessToken, refreshToken, profile, done) => {
-    const options = {
-      criteria: { 'google.id': profile.id },
+    const query = {
+      'google.id': profile.id,
     };
-    User.load(options, function loadUser(err, user) {
+    User.findOne(query, function loadUser(err, user) {
       if (err) return done(err);
       if (!user) {
+        console.log('create prpof');
         const newUser = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
@@ -29,6 +30,7 @@ const googleStrategy = new GoogleStrategy(
         });
         newUser.save(function saveCallback(err) {
           if (err) console.log(err); // eslint-disable-line no-console
+          console.log('don creating prof');
           return done(err, user);
         });
       } else {

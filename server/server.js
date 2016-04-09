@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import logger from 'morgan';
 import { configurePassport } from './middlewares/passport';
+import session from 'express-session';
+import connectMongo from 'connect-mongo';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -46,15 +48,24 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
   dummyData();
 });
 
-// Apply body Parser and server public assets and routes
-app.use(bodyParser.json({ limit: '20mb' }));
-app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-app.use(Express.static(path.resolve(__dirname, '../static')));
+// user sessions
+const MongoStore = connectMongo(session);
+app.use(session({
+  secret: 'victory cat',
+  store: new MongoStore({
+    url: serverConfig.mongoURL,
+  }),
+}));
 
 // use passport session
 const passport = configurePassport();
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Apply body Parser and server public assets and routes
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
+app.use(Express.static(path.resolve(__dirname, '../static')));
 
 app.use('/api/snippets', snippets);
 app.get('/auth/google',
@@ -64,12 +75,13 @@ app.get('/auth/google',
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email',
     ],
-  }), () => {});
+  }));
 
 app.get('/auth/google/callback',
   passport.authenticate('google', {
+    successRedirect: '/',
     failureRedirect: '/login',
-  }), () => {});
+  }));
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
@@ -97,6 +109,8 @@ const renderFullPage = (html, initialState) => {
   `;
 };
 
+import requiresLogin from './middlewares';
+
 const renderError = err => {
   const softTab = '&#32;&#32;&#32;&#32;';
   const errTrace = process.env.NODE_ENV !== 'production' ?
@@ -105,7 +119,20 @@ const renderError = err => {
 };
 
 // Server Side Rendering based on routes matched by React-router.
+// app.use(requiresLogin);
 app.use((req, res, next) => {
+  // console.log(JSON.stringify(req.account, null, 2));
+  // console.log(Object.keys(req));
+  console.log({
+    isAuthenticated: req.isAuthenticated(),
+  });
+
+  next();
+})
+app.use((req, res, next) => {
+  if (req.url !== '/login' && !req.isAuthenticated()) {
+    return res.redirect(302, '/login');
+  }
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
       return res.status(500).end(renderError(err));

@@ -8,6 +8,7 @@ const userSchema = new Schema({
   fullName: { type: String },
   email: { type: String },  // TODO: use some email validator
   pictureUrl: { type: String },
+  google: { type: Object },
 });
 
 userSchema.plugin(timestamps);

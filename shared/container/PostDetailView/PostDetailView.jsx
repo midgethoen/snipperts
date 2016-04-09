@@ -19,7 +19,7 @@ class PostDetailView extends Component {
   }
 
   handleLogoClick() {
-    this.props.dispatch(Actions.fetchPosts());
+    // this.props.dispatch(Actions.fetchPosts());
   }
 
   render() {
