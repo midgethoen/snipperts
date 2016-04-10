@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 function Snippet({ snippet }) {
+  console.log(snippet);
   return (
     <article className="row">
       <figure className="col-xs-3 col-md-2">

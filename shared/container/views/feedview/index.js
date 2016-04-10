@@ -55,9 +55,6 @@ const idEquals = propEq('_id');
 function mapStateToProps({ snippets, users }) {
   return {
     snippets: snippets.map(snippet => {
-      if (! find(idEquals(snippet.user), users)) {
-        debugger;
-      }
       return set(
         userLens,
         find(idEquals(snippet.user), users),
