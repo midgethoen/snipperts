@@ -7,25 +7,31 @@ import defaultMentionStyle from './defaultMentionStyle';
 export default class TextareaTag extends Component {
   constructor(props) {
     super(props);
-    this.value = '';
+    this.state = { value: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
-  handleChange(value) {
+  handleChange(e, value) {
     this.setState({
       value,
     });
   }
   handleRemove() {
-    console.log('removed a mention', arguments);
+    // console.log('removed a mention', arguments);
   }
   handleAdd() {
-    console.log('added a new mention', arguments);
+    // console.log('added a new mention', arguments);
   }
+
   handleKeyDown(e) {
     if (e.keyCode === 13 && !e.shiftKey) {
-      console.log('IMPLEMENT SUBMIT FUNCTION');
+      e.preventDefault();
+      this.props.onSubmit(this.state.value);
+      this.setState( {value:'' });
     }
     return true;
   }
+
   renderSuggestion(suggestion, search, highlightedDisplay) {
     return (
       <div className="user">
@@ -37,10 +43,10 @@ export default class TextareaTag extends Component {
     return (
       <div className="multiple-triggers">
         <MentionsInput
-          onKeyDown={this.submit}
+          onKeyDown={this.handleKeyDown}
           value={this.state.value}
           onChange={this.handleChange}
-          markup="@[__display__](__type__:__id__)"
+          markup="@__display__"
           style={ defaultStyle() }
           placeholder={'Mention people using "@" and tag projects using "#"'}
         >
@@ -70,4 +76,5 @@ export default class TextareaTag extends Component {
 TextareaTag.propTypes = {
   mentions: React.PropTypes.array.isRequired,
   tags: React.PropTypes.array.isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
 };

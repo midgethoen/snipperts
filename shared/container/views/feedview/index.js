@@ -16,18 +16,19 @@ class FeedView extends Component {
     });
   }
 
-  createSnippet() {
-    this.props.dispatch(
-      Actions.createSnippet(this.refs.SNIPPET_INPUT.state.text)
-    );
+  createSnippet(value) {
+    if (value.trim()) {
+      this.props.dispatch(
+        Actions.createSnippet(value.trim())
+      );
+    }
   }
 
   render() {
+    // <SnippetFeed snippets={this.props.snippets} />
     return (
       <div className="container-fluid">
-        <SnippetFeed snippets={this.props.snippets} />
         <SnippetInputBox
-          ref="SNIPPET_INPUT"
           onSubmit={this.createSnippet}
         />
       </div>
