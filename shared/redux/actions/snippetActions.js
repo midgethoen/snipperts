@@ -24,19 +24,15 @@ export function changeSelectedSnippet(snippetId) {
   };
 }
 
-export function createSnippet(snippet) {
+export function createSnippet(text) {
   return (dispatch) => {
-    fetch(`${baseURL}/api/snippet`, {
+    fetch(`${baseURL}/api/snippets`, {
       method: 'post',
-      body: JSON.stringify({
-        snippet: {
-          text: snippet.text,
-        },
-      }),
+      body: JSON.stringify({ text }),
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
-    }).then((res) => res.json()).then(res => dispatch(addSnippet(res.snippet)));
+    }).then((res) => res.json()).then(res => dispatch(addSnippet(res)));
   };
 }
 
