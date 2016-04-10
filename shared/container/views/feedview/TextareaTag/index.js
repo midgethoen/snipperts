@@ -25,12 +25,12 @@ export default class TextareaTag extends Component {
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
       this.props.onSubmit(this.state.value);
-      this.setState( { value: '' });
+      this.setState({ value: '' });
     }
     return true;
   }
 
-  renderUserSuggestion(suggestion, search, highlightedDisplay) {
+  renderUserSuggestion(suggestion) {
     return (
       <div className="user">
         <img className="user_picture" src={suggestion.pictureUrl} />
