@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
-const timestamps = require('mongoose-timestamp');
+import timestamps from 'mongoose-timestamp';
+import Topic from './topic';
+import User from './user';
+import Promise from 'bluebird';
 
 const Schema = mongoose.Schema;
 
@@ -11,17 +14,38 @@ const snippetSchema = new Schema({
 });
 
 const referenceRegex = /([#@])[\w-_]+/g;
-const tokenMap = { '@': 'mentions', '#': 'topics' };
 
 snippetSchema.pre('save', function preSave(next) {
   if (this.isNew) {
     let match;
+    const tokens = [];
     while ( match = referenceRegex.exec(this.text) ){ // eslint-disable-line
       const [mention, token] = match;
-      this[tokenMap[token]] = mention;
+      tokens.push({ mention, token });
     }
+
+    const tasks = tokens.map(({ mention, token }) => {
+      if (token === '@') {
+        return User.findOne({ username: mention })
+          .then(user   => {
+            if (user) {
+              this.users.push(user._id);
+            }
+          });
+      }
+      return Topic.findOne({ tag: mention })
+        .then(topic => {
+          if (!topic) {
+            return new Topic({ tag: mention }).save();
+          }
+          return topic;
+        })
+        .then(topic => {
+          this.topics.push(topic._id);
+        });
+    });
+    Promise.all(tasks).then(next);
   }
-  next();
 });
 
 snippetSchema.plugin(timestamps);

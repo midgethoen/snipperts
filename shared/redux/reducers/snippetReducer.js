@@ -8,13 +8,7 @@ const snippetReducer = (state = initialState, action) => {
     case ActionTypes.ADD_SNIPPET :
       return [
         ...state,
-        {
-          user: snippet.userId,
-          text: snippet.text,
-          description: snippet.description,
-          topics: snippet.topics,
-          _id: snippet._id,
-        },
+        snippet,
       ];
 
     case ActionTypes.UPDATE_SNIPPET :

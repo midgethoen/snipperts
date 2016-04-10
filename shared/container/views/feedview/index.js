@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as Actions from '../../../redux/actions';
 import SnippetFeed from './snippetfeed';
 import SnippetInputBox from './snippetinputbox';
+import { propEq, set, find, lensProp } from 'ramda';
+
 const socket = require('socket.io-client');
 
 const baseURL = typeof window === 'undefined' ? process.env.BASE_URL || (`http://localhost:8000`) : '';
@@ -27,9 +29,9 @@ class FeedView extends Component {
   }
 
   render() {
-    // <SnippetFeed snippets={this.props.snippets} />
     return (
       <div className="container-fluid">
+        <SnippetFeed snippets={this.props.snippets} />
         <SnippetInputBox
           onSubmit={this.createSnippet}
         />
@@ -48,9 +50,21 @@ FeedView.propTypes = {
   snippets: PropTypes.arrayOf(PropTypes.object),
 };
 
-
-function mapStateToProps(state) {
-  return state;
+const userLens = lensProp('user');
+const idEquals = propEq('_id');
+function mapStateToProps({ snippets, users }) {
+  return {
+    snippets: snippets.map(snippet => {
+      if (! find(idEquals(snippet.user), users)) {
+        debugger;
+      }
+      return set(
+        userLens,
+        find(idEquals(snippet.user), users),
+        snippet
+      );
+    }),
+  };
 }
 
 export default connect(mapStateToProps)(FeedView);

@@ -25,7 +25,7 @@ export function addSnippet(req, res) {
     if (err) {
       return handleError(res, err);
     }
-    io.emit('sendSnippet', snippet);
+    io.emit('sendSnippet', snippet.toJSON());
     return res.status(200).json(snippet);
   });
 }

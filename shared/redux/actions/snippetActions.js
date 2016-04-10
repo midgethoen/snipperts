@@ -7,13 +7,7 @@ const baseURL = typeof window === 'undefined' ? process.env.BASE_URL || (`http:/
 export function addSnippet(snippet) {
   return {
     type: ActionTypes.ADD_SNIPPET,
-    snippet: {
-      user: snippet.userId,
-      text: snippet.text,
-      description: snippet.description,
-      topics: snippet.topics,
-      _id: snippet._id,
-    },
+    snippet,
   };
 }
 

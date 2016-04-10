@@ -4,7 +4,7 @@ function Snippet({ snippet }) {
   return (
     <article className="row">
       <figure className="col-xs-3 col-md-2">
-        <a href={snippet.user.tag}>
+        <a href={snippet.user.username}>
           <img src={snippet.user.pictureUrl} />
         </a>
       </figure>
@@ -13,7 +13,7 @@ function Snippet({ snippet }) {
           <ul>
             <li data-squad={snippet.squad}>{snippet.text}</li>
           </ul>
-          <div className="byline"><a href={snippet.user.tag} rel="author">{snippet.user.name}</a> | <time>{snippet.updated_at}</time></div>
+          <div className="byline"><a href={snippet.user.username} rel="author">{snippet.user.name}</a> | <time>{snippet.updated_at}</time></div>
         </div>
       </div>
     </article>

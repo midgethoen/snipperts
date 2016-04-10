@@ -47,17 +47,18 @@ SnippetInputBox.propTypes = {
   topics: PropTypes.arrayOf(PropTypes.string),
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ users, topics }) {
   return {
-    mentions: [
-      {id:123, display: "albert", name: "Albert Jongeren", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"},
-      {id:124, display: "piet", name: "Piet Jongeren", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"},
-      {id:125, display: "hans", name: "Hans Grietje", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"},
-      {id:126, display: "grietje", name: "Grietje Hans", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"}],
-    topics: [
-      {id:234, display: "koek"},
-      {id:23434, display: "koekaasdf"}
-    ],
+    mentions: users.map(u => ({
+      id: u._id,
+      diplay: u.username,
+      name: u.name,
+      pictureUrl: u.pictureUrl,
+    })),
+    topics: topics.map(t => ({
+      id: t._id,
+      diplay: t.tag,
+    })),
   };
 }
 
