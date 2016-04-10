@@ -46,7 +46,7 @@ export default class TextareaTag extends Component {
           onKeyDown={this.handleKeyDown}
           value={this.state.value}
           onChange={this.handleChange}
-          markup="@__display__"
+          markup="@[__display__](__type__:__id__)"
           style={ defaultStyle() }
           placeholder={'Mention people using "@" and tag projects using "#"'}
         >
