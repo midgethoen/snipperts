@@ -2,11 +2,21 @@ import React, { PropTypes } from 'react';
 
 function Snippet({ snippet }) {
   return (
-    <pre>
-    {
-      JSON.stringify(snippet, null, 2)
-    }
-    </pre>
+    <article className="row">
+      <figure className="col-xs-3 col-md-2">
+        <a href={snippet.user.tag}>
+          <img src={snippet.user.pictureUrl} />
+        </a>
+      </figure>
+      <div className="col-xs-9 col-md-10">
+        <div className="message">
+          <ul>
+            <li data-squad={snippet.squad}>{snippet.text}</li>
+          </ul>
+          <div className="byline"><a href={snippet.user.tag} rel="author">{snippet.user.name}</a> | <time>{snippet.updated_at}</time></div>
+        </div>
+      </div>
+    </article>
   );
 }
 

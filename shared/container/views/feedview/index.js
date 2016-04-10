@@ -6,7 +6,7 @@ import SnippetInputBox from './snippetinputbox';
 
 function FeedView(props) {
   return (
-    <div>
+    <div className="container-fluid">
       <SnippetFeed snippets={props.snippets} />
       <SnippetInputBox />
     </div>

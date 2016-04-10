@@ -3,12 +3,14 @@ import Snippet from './snippet';
 
 function SnippetFeed({ snippets }) {
   return (
-    <div>
-    {
-      // XXX: needs to be grouped by user/time
-      snippets.map(snippet => <Snippet snippet={snippet} />)
-    }
-    </div>
+    <section className="row feed">
+      <div className="col-md-9 col-md-offset-3 col-lg-6">
+        {
+          // XXX: needs to be grouped by user/time
+          snippets.map(snippet => <Snippet snippet={snippet} />)
+        }
+      </div>
+    </section>
   );
 }
 
