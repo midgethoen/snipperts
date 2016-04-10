@@ -5,12 +5,14 @@ import SnippetFeed from './snippetfeed';
 import SnippetInputBox from './snippetinputbox';
 const socket = require('socket.io-client');
 
+const baseURL = typeof window === 'undefined' ? process.env.BASE_URL || (`http://localhost:8000`) : '';
+
 class FeedView extends Component {
 
   constructor(props) {
     super(props);
     this.createSnippet = this.createSnippet.bind(this);
-    this.socket = socket('http://localhost:8000');
+    this.socket = socket(baseURL);
     this.socket.on('sendSnippet', function (snippet) {
       props.dispatch(Actions.addSnippet(snippet));
     });
