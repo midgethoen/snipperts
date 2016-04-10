@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 class SnippetInputBox extends Component {
 
@@ -14,8 +14,19 @@ class SnippetInputBox extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.click}>send</button>
+      <div className="snippet-input">
+        <div className="row">
+          <div className="col-lg-6 col-lg-offset-3">
+            <div className="row">
+              <div className="col-lg-10 col-lg-offset-2">
+                <form>
+                  <textarea className="form-control">I worked on</textarea>
+                  <button onClick={this.click}>send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
