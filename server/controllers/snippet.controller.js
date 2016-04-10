@@ -16,7 +16,10 @@ export function addSnippet(req, res) {
   if (!req.body.text) {
     return res.status(403).end();
   }
-  const newSnippet = new Snippet(req.body);
+  const newSnippet = new Snippet({
+    ...req.body,
+    user: req.user._id,
+  });
   newSnippet.cuid = cuid();
   newSnippet.save((err, snippet) => {
     if (err) {

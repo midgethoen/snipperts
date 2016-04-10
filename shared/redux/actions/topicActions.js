@@ -13,7 +13,7 @@ export function replaceTopics(topics) {
 
 export function fetchTopics() {
   return (dispatch) => {
-    return fetch(`${baseURL}/api/topics`).
+    return fetch(`${baseURL}/api/topics`, { credentials: 'same-origin' }).
       then((response) => response.json()).
       then((response) => dispatch(replaceTopics(response)));
   };
