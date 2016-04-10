@@ -27,7 +27,7 @@ const googleStrategy = new GoogleStrategy(
       if (err) return done(err);
       if (!user) {
         const newUser = new User({
-          name: profile.displayName,
+          fullName: profile.displayName,
           email: profile.emails[0].value,
           username: profile.emails[0].value.match(/^([^@]*)@/)[1],
           provider: 'google',
