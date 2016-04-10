@@ -17,10 +17,10 @@ export function addSnippet(req, res) {
   }
   const newSnippet = new Snippet(req.body);
   newSnippet.cuid = cuid();
-  newSnippet.save(err => {
+  newSnippet.save((err, snippet) => {
     if (err) {
       return handleError(res, err);
     }
-    return res.status(204).end();
+    return res.status(200).json(snippet);
   });
 }

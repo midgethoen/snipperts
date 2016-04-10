@@ -1,16 +1,33 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../../../redux/actions';
 import SnippetFeed from './snippetfeed';
 import SnippetInputBox from './snippetinputbox';
 
-function FeedView(props) {
-  return (
-    <div>
-      <SnippetFeed snippets={props.snippets} />
-      <SnippetInputBox />
-    </div>
-  );
+class FeedView extends Component {
+
+  constructor(props) {
+    super(props);
+    this.createSnippet = this.createSnippet.bind(this);
+  }
+
+  createSnippet() {
+    this.props.dispatch(
+      Actions.createSnippet(this.refs.SNIPPET_INPUT.state.text)
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <SnippetFeed snippets={this.props.snippets} />
+        <SnippetInputBox
+          ref="SNIPPET_INPUT"
+          onSubmit={this.createSnippet}
+        />
+      </div>
+    );
+  }
 }
 
 FeedView.need = [
