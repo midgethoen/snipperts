@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Mention, MentionsInput } from 'react-mentions';
-import defaultStyle from './defaultStyle';
-import defaultMentionStyle from './defaultMentionStyle';
 
 
 export default class TextareaTag extends Component {
@@ -32,42 +30,59 @@ export default class TextareaTag extends Component {
     return true;
   }
 
-  renderSuggestion(suggestion, search, highlightedDisplay) {
+  renderUserSuggestion(suggestion, search, highlightedDisplay) {
     return (
       <div className="user">
-        { highlightedDisplay }
+        <img className="user_picture" src={suggestion.pictureUrl} />
+        <span className="user_display">@{suggestion.display}</span>
+        <span className="user_divider"></span>
+        <span className="user_name">{suggestion.name}</span>
       </div>
     );
   }
+
+  renderTopicSuggestion(suggestion, search, highlightedDisplay) {
+    return (
+      <div className="topic">
+        #{highlightedDisplay}
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div className="multiple-triggers">
-        <MentionsInput
-          onKeyDown={this.handleKeyDown}
-          value={this.state.value}
-          onChange={this.handleChange}
-          markup="@__display__"
-          style={ defaultStyle() }
-          placeholder={'Mention people using "@" and tag projects using "#"'}
-        >
-
-          <Mention
-            type="user"
-            trigger="@"
-            data={this.props.mentions}
-            renderSuggestion={this.renderSuggestion}
-            onAdd={this.handleAdd}
-            onRemove={this.handleRemove}
-            style={defaultMentionStyle}
-          />
-          <Mention
-            type="topic"
-            trigger="#"
-            data={this.props.tags}
-            renderSuggestion={this.renderSuggestion}
-            style={defaultMentionStyle}
-          />
-        </MentionsInput>
+      <div className="col-lg-6 col-lg-offset-3">
+        <div className="row">
+          <div className="col-lg-10 col-lg-offset-2">
+            <div className="multiple-triggers">
+              <MentionsInput
+                onKeyDown={this.handleKeyDown}
+                value={this.state.value}
+                onChange={this.handleChange}
+                markup="@[__display__](__type__:__id__)"
+                className="mentionsinput"
+                placeholder={'Mention people using "@" and tag projects using "#"'}
+              >
+                <Mention
+                  type="user"
+                  trigger="@"
+                  data={this.props.mentions}
+                  renderSuggestion={this.renderUserSuggestion}
+                  onAdd={this.handleAdd}
+                  className="mentions"
+                  onRemove={this.handleRemove}
+                />
+                <Mention
+                  type="topic"
+                  trigger="#"
+                  className="topics"
+                  data={this.props.tags}
+                  renderSuggestion={this.renderTopicSuggestion}
+                />
+              </MentionsInput>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

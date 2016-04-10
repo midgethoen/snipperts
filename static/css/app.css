@@ -85,18 +85,18 @@ figure img {
   width: 70px;
 }
 
-ul {
+.feed ul {
   list-style: none;
   padding:0;
   margin:0;
 }
 
-li {
+.feed li {
   padding-left: 1em;
   text-indent: -1em;
 }
 
-li:before {
+.feed li:before {
   content: "• ";
   font-size: 1.5em;
   position: relative;
@@ -125,20 +125,20 @@ a.tag {
   padding: 0.1em 0.4em;
   font-size: 0.9em;
   height: 1em;
+  color: #fff;
 }
-a.tag.project {
+strong.topics, strong.mentions {
+  border-radius: 0.3em;
+}
+a.tag.project, strong.topics, .mentionsinput__suggestions__item--focused .topic {
   background-color: #90B7FF;
-  color: #fff;
 }
-a.tag.person {
+a.tag.person, strong.mentions, .mentionsinput__suggestions__item--focused .user {
   background-color: #B5D26B;
-  color: #fff;
 }
 a.tag.squad {
   background-color: #FF7474;
-  color: #fff;
 }
-
 
 .snippet-input {
   position: fixed;
@@ -150,11 +150,67 @@ a.tag.squad {
   width: 100%;
 }
 textarea {
-  min-height: 7em;
-  border: 2px solid #eee:
-  outline: none;
+  border: 0;
+  padding: 0.9em;
+  min-height: 5em;
 }
 textarea:focus {
-  border: 2px solid #ccc;
 	outline: none;
+}
+.multiple-triggers {
+  border-radius: 0.5em;
+  border: 2px solid #ccc;
+  min-height: 7em;
+  background-color: #fff;
+  padding: 0.1em;
+}
+
+.multiple-triggers > div > div:nth-child(2) {
+  background-color: transparent !important;
+}
+
+.multiple-triggers ul {
+  border: 2px solid #ccc;
+  background-color: #fff;
+  border-radius: 0.5em;
+}
+.multiple-triggers li {
+  border: 0;
+  display: block;
+  font-size: 0.9em;
+}
+.mentionsinput__suggestions__item > div {
+  padding: .3rem 1rem;
+}
+.mentionsinput__highlighter {
+  padding: 0.9em;
+}
+.mentionsinput__suggestions {
+  top: auto !important;
+  bottom: 2.5em;
+  left: -0.2em !important;
+  margin-top: 0 !important;
+}
+.user_display {
+  font-weight: bold;
+}
+.user_picture {
+  width: 2rem;
+  margin-right: 1em;
+  border-radius: .3rem;
+}
+.user_divider {
+  position: relative;
+  margin-left: .3em;
+  margin-right: .3em;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  width: 1em;
+  display: inline-block;
+  height: 1em;
+  top: .2em;
+  left: 0px;
+}
+.user_name {
+  font-size: 0.9em;
 }

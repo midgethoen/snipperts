@@ -18,17 +18,11 @@ class SnippetInputBox extends Component {
     return (
       <div className="snippet-input">
         <div className="row">
-          <div className="col-lg-6 col-lg-offset-3">
-            <div className="row">
-              <div className="col-lg-10 col-lg-offset-2">
-                  <TextareaTag
-                    mentions={this.props.mentions}
-                    tags={this.props.topics}
-                    onSubmit={this.props.onSubmit}
-                  />
-              </div>
-            </div>
-          </div>
+          <TextareaTag
+            mentions={this.props.mentions}
+            tags={this.props.topics}
+            onSubmit={this.props.onSubmit}
+          />
         </div>
       </div>
     );
@@ -43,8 +37,15 @@ SnippetInputBox.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    mentions: [{id:123, display: "koek"}],
-    topics: [{id:123, display: "koek"}],
+    mentions: [
+      {id:123, display: "albert", name: "Albert Jongeren", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"},
+      {id:124, display: "piet", name: "Piet Jongeren", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"},
+      {id:125, display: "hans", name: "Hans Grietje", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"},
+      {id:126, display: "grietje", name: "Grietje Hans", pictureUrl: "https://lh3.googleusercontent.com/-MTFn1U2W0vU/AAAAAAAAAAI/AAAAAAAAYvE/aC_JBrSQqPo/s120-c/photo.jpg"}],
+    topics: [
+      {id:234, display: "koek"},
+      {id:23434, display: "koekaasdf"}
+    ],
   };
 }
 
