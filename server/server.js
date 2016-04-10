@@ -174,10 +174,15 @@ app.use(notApi, (req, res, next) => {
 });
 
 // start app
-app.listen(serverConfig.port, (error) => {
+const server = app.listen(serverConfig.port, (error) => {
   if (!error) {
     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
   }
+});
+
+export const io = require('socket.io')(server);
+io.on('connection', function () {
+  console.log('COOONNNNECCTEEEEEEEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDD');
 });
 
 export default app;
