@@ -27,7 +27,7 @@ export default class TextareaTag extends Component {
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
       this.props.onSubmit(this.state.value);
-      this.setState( {value:'' });
+      this.setState( { value: '' });
     }
     return true;
   }
