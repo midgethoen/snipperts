@@ -2,7 +2,9 @@ import React from 'react';
 
 export default function LoginView() {
   return (
-    <a href="/auth/google">Sign in with Google</a>
+    <div className="login">
+      <a href="/auth/google"><img src="/img/btn_google_signin_dark_normal_web.png" /></a>
+    </div>
   );
 }
 

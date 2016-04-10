@@ -5,7 +5,7 @@
 export function requiresLogin(req, res, next) {
   if (req.isAuthenticated()) return next();
   if (req.method === 'GET') {
-    req.session.returnTo = req.originalUrl;
+    req.session.returnTo = res.redirect('/');
   }
   res.redirect('/login');
 }
