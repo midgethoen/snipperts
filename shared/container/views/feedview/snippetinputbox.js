@@ -6,12 +6,24 @@ class SnippetInputBox extends Component {
 
   constructor(props) {
     super(props);
-    this.click = this.click.bind(this);
+    this.cleanupMentions = this.cleanupMentions.bind(this);
   }
 
-  click() {
-    this.setState({ text: (new Date).toString() });
-    this.props.onSubmit();
+  cleanupMentions(rawtext) {
+    /*
+      The mentionsinput uses a weir format, but we want to send just the tex back to the backend.
+      '@bla stuff #thinks' instead of '@[bla][user:234] stuff .. etc'
+      so we just parse and change it for now ...
+     */
+    let match;
+    let text = rawtext;
+    const typeMap = { user: '@', topic: '#' };
+    const re = /[@#]\[([\w-_]+)\]\(([^:]+)[^\)]*\)/g;
+    while (match = re.exec(rawtext)) { //eslint-disable-line
+      const [fullMatch, tag, type] = match;
+      text = text.replace(fullMatch, `${typeMap[type]}${tag}`);
+    }
+    this.props.onSubmit(text);
   }
 
   render() {
@@ -21,7 +33,7 @@ class SnippetInputBox extends Component {
           <TextareaTag
             mentions={this.props.mentions}
             tags={this.props.topics}
-            onSubmit={this.props.onSubmit}
+            onSubmit={this.cleanupMentions}
           />
         </div>
       </div>

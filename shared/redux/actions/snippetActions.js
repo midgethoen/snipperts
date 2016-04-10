@@ -29,6 +29,7 @@ export function createSnippet(text) {
     fetch(`${baseURL}/api/snippets`, {
       method: 'post',
       body: JSON.stringify({ text }),
+      credentials: 'same-origin',
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
@@ -52,7 +53,7 @@ export function replaceSnippets(snippets) {
 
 export function fetchSnippets() {
   return (dispatch) => {
-    return fetch(`${baseURL}/api/snippets`).
+    return fetch(`${baseURL}/api/snippets`, { credentials: 'same-origin' }).
       then((response) => response.json()).
       then((response) => dispatch(replaceSnippets(response)));
   };

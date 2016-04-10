@@ -1,6 +1,12 @@
 /**
  * Module dependencies.
  */
+function getProfilePicture(googleObj) {
+  if (googleObj.image) {
+    return googleObj.image.url;
+  }
+  return null;
+}
 
 import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
 import config from '../../config';
@@ -23,9 +29,10 @@ const googleStrategy = new GoogleStrategy(
         const newUser = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
-          username: profile.username,
+          username: profile.emails[0].value.match(/^([^@]*)@/)[1],
           provider: 'google',
           google: profile._json,
+          pictureUrl: getProfilePicture(profile._json),
         });
         newUser.save(function saveCallback(err) {
           if (err) console.log(err); // eslint-disable-line no-console

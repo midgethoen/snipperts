@@ -13,7 +13,7 @@ export function replaceUsers(users) {
 
 export function fetchUsers() {
   return (dispatch) => {
-    return fetch(`${baseURL}/api/users`).
+    return fetch(`${baseURL}/api/users`, { credentials: 'same-origin' }).
       then((response) => response.json()).
       then((response) => dispatch(replaceUsers(response)));
   };
