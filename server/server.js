@@ -3,9 +3,6 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
 import logger from 'morgan';
-import { configurePassport } from './middlewares/passport';
-import session from 'express-session';
-import connectMongo from 'connect-mongo';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -33,11 +30,15 @@ import { match, RouterContext } from 'react-router';
 // Import required modules
 import routes from '../shared/routes';
 import { fetchComponentData } from './util/fetchData';
-import snippets from './routes/snippet.routes';
-import topics from './routes/topic.routes';
-import users from './routes/user.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
+
+import {
+  sessions,
+  passport,
+} from './middlewares';
+
+import { api } from './routes';
 
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, (error) => {
@@ -51,16 +52,9 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 });
 
 // user sessions
-const MongoStore = connectMongo(session);
-app.use(session({
-  secret: 'victory cat',
-  store: new MongoStore({
-    url: serverConfig.mongoURL,
-  }),
-}));
+app.use(sessions);
 
 // use passport session
-const passport = configurePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -69,9 +63,7 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../static')));
 
-app.use('/api/snippets', snippets);
-app.use('/api/users', users);
-app.use('/api/topics', topics);
+app.use('/api', api);
 
 const notApi = /^(?!\/api\/)/;
 
@@ -165,6 +157,7 @@ app.use(notApi, (req, res, next) => {
 
         res.status(200).end(renderFullPage(initialView, finalState));
       });
+      // .catch(err => { throw err; });
   });
 });
 

@@ -8,5 +8,7 @@ export function fetchComponentData(store, components, params) {
     .concat(prev);
   }, []);
 
-  return Promise.all(needs.map(need => store.dispatch(need(params, store.getState()))));
+  return Promise
+    .all(needs.map(need => store.dispatch(need(params, store.getState()))));
+    // .catch(err => { throw err; });
 }
