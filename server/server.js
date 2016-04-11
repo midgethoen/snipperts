@@ -30,7 +30,6 @@ import { match, RouterContext } from 'react-router';
 // Import required modules
 import routes from '../shared/routes';
 import { fetchComponentData } from './util/fetchData';
-import dummyData from './dummyData';
 import serverConfig from './config';
 
 import {
@@ -46,9 +45,6 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
   }
-
-  // feed some dummy data in DB.
-  dummyData();
 });
 
 // user sessions
