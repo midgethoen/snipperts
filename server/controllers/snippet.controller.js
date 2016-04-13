@@ -4,7 +4,7 @@ import { handleError } from '../util';
 import { io } from '../server';
 
 export function getSnippets(req, res) {
-  Snippet.find().sort('-createdAt').exec((err, snippets) => {
+  Snippet.find().sort('createdAt').exec((err, snippets) => {
     if (err) {
       return handleError(res, err);
     }
