@@ -29,6 +29,13 @@ export default class TextareaTag extends Component {
     return true;
   }
 
+  displayTransform(_, display, type) {
+    if (type === 'user') {
+      return `@${display}`;
+    }
+    return `#${display}`;
+  }
+
   renderUserSuggestion(suggestion) {
     return (
       <div className="user">
@@ -38,13 +45,6 @@ export default class TextareaTag extends Component {
         <span className="user_name">{suggestion.name}</span>
       </div>
     );
-  }
-
-  displayTransform(_, display, type) {
-    if (type === 'user') {
-      return `@${display}`;
-    }
-    return `#${display}`;
   }
 
   renderTopicSuggestion(suggestion) {

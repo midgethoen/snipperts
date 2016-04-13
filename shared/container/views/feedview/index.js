@@ -15,7 +15,7 @@ class FeedView extends Component {
     super(props);
     this.createSnippet = this.createSnippet.bind(this);
     this.socket = socket(baseURL);
-    this.socket.on('sendSnippet', function (snippet) {
+    this.socket.on('sendSnippet', function sockSendSnippet(snippet) {
       props.dispatch(Actions.addSnippet(snippet));
     });
   }
