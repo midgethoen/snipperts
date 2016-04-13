@@ -11,11 +11,11 @@ function snippetDayOrUserChanged() {
       day === new Date(snippet.createdAt).getDate() &&
       user === snippet.user
     ) {
-      return true;
+      return false;
     }
     day = new Date(snippet.createdAt).getDate();
     user = snippet.user;
-    return false;
+    return true;
   };
 }
 
