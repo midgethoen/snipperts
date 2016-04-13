@@ -15,7 +15,7 @@ function Snippet({ snippets }) {
           <ul>
             {snippets.map(s => <li data-squad={s.squad}>{s.text}</li>)}
           </ul>
-          <div className="byline"><a href={snippet.user.username} rel="author">{snippet.user.name}</a> | <time>{relativeDate(new Date(snippet.updatedAt))}</time></div>
+          <div className="byline"><a href={snippet.user.username} rel="author">{snippet.user.fullName}</a> | <time>{relativeDate(new Date(snippet.updatedAt))}</time></div>
         </div>
       </div>
     </article>
