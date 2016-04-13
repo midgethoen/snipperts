@@ -1,13 +1,30 @@
 import React, { PropTypes } from 'react';
-import Snippet from './snippet';
+import SnippetGroup from './snippetgroup';
+import { splitWhen } from 'ramda';
+
+function snippetDayOrUserChanged() {
+  let day;
+  let user;
+  return function checkIfDayOrUserChanged(snippet) {
+    if (
+      day === new Date(snippet.createdAt).getDay() &&
+      user === snippet.user
+    ) {
+      return true;
+    }
+    day = new Date(snippet.createdAt).getDay();
+    user = snippet.user;
+    return false;
+  };
+}
 
 function SnippetFeed({ snippets }) {
   return (
     <section className="row feed">
       <div className="col-md-9 col-md-offset-3 col-lg-6">
         {
-          // XXX: needs to be grouped by user/time
-          snippets.map(snippet => <Snippet snippet={snippet} />)
+          splitWhen(snippetDayOrUserChanged(), snippets)
+            .map(snippetGroup => <SnippetGroup snippets={snippetGroup} />)
         }
       </div>
     </section>

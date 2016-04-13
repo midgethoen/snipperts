@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-function Snippet({ snippet }) {
-  console.log(snippet);
+function Snippet({ snippets }) {
+  const [snippet] = snippets;
   return (
     <article className="row">
       <figure className="col-xs-3 col-md-2">
@@ -12,7 +12,7 @@ function Snippet({ snippet }) {
       <div className="col-xs-9 col-md-10">
         <div className="message">
           <ul>
-            <li data-squad={snippet.squad}>{snippet.text}</li>
+            {snippets.map(s => <li data-squad={s.squad}>{s.text}</li>)}
           </ul>
           <div className="byline"><a href={snippet.user.username} rel="author">{snippet.user.name}</a> | <time>{snippet.updated_at}</time></div>
         </div>
@@ -22,10 +22,12 @@ function Snippet({ snippet }) {
 }
 
 Snippet.propTypes = {
-  snippet: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    user: PropTypes.object.isRequired,
-  }),
+  snippets: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      user: PropTypes.object.isRequired,
+    })
+  ),
 };
 
 export default Snippet;
