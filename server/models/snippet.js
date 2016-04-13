@@ -3,6 +3,7 @@ import timestamps from 'mongoose-timestamp';
 import Topic from './topic';
 import User from './user';
 import Promise from 'bluebird';
+import { tail } from 'ramda';
 
 const Schema = mongoose.Schema;
 
@@ -13,14 +14,14 @@ const snippetSchema = new Schema({
   mentions: [{ type: String, ref: 'User' }],
 });
 
-const referenceRegex = /([#@])[\w-_]+/g;
+const referenceRegex = /([#@])([\w-_]+)/g;
 
 snippetSchema.pre('save', function preSave(next) {
   if (this.isNew) {
     let match;
     const tokens = [];
     while ( match = referenceRegex.exec(this.text) ){ // eslint-disable-line
-      const [mention, token] = match;
+      const [token, mention] = tail(match);
       tokens.push({ mention, token });
     }
 
