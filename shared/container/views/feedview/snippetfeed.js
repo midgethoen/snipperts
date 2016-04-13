@@ -7,12 +7,13 @@ function snippetDayOrUserChanged() {
   let user;
   return function checkIfDayOrUserChanged(snippet) {
     if (
-      day === new Date(snippet.createdAt).getDay() &&
+      day !== undefined && user !== undefined &&
+      day === new Date(snippet.createdAt).getDate() &&
       user === snippet.user
     ) {
       return true;
     }
-    day = new Date(snippet.createdAt).getDay();
+    day = new Date(snippet.createdAt).getDate();
     user = snippet.user;
     return false;
   };
