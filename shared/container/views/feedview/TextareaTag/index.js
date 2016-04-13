@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Mention, MentionsInput } from 'react-mentions';
 
-
 export default class TextareaTag extends Component {
   constructor(props) {
     super(props);
@@ -34,17 +33,24 @@ export default class TextareaTag extends Component {
     return (
       <div className="user">
         <img className="user_picture" src={suggestion.pictureUrl} />
-        <span className="user_display">@{suggestion.display}</span>
+        <span className="user_display">{suggestion.display}</span>
         <span className="user_divider"></span>
         <span className="user_name">{suggestion.name}</span>
       </div>
     );
   }
 
-  renderTopicSuggestion(suggestion, search, highlightedDisplay) {
+  displayTransform(_, display, type) {
+    if (type === 'user') {
+      return `@${display}`;
+    }
+    return `#${display}`;
+  }
+
+  renderTopicSuggestion(suggestion) {
     return (
-      <div className="topic">
-        #{highlightedDisplay}
+      <div className="topi">
+        {suggestion.display}
       </div>
     );
   }
@@ -62,6 +68,7 @@ export default class TextareaTag extends Component {
                 markup="@[__display__](__type__:__id__)"
                 className="mentionsinput"
                 placeholder={'Mention people using "@" and tag projects using "#"'}
+                displayTransform={this.displayTransform}
               >
                 <Mention
                   type="user"
@@ -87,6 +94,7 @@ export default class TextareaTag extends Component {
     );
   }
 }
+
 
 TextareaTag.propTypes = {
   mentions: React.PropTypes.array.isRequired,

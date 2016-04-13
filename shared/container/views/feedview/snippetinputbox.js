@@ -51,13 +51,13 @@ function mapStateToProps({ users, topics }) {
   return {
     mentions: users.map(u => ({
       id: u._id,
-      diplay: u.username,
+      display: u.username,
       name: u.name,
       pictureUrl: u.pictureUrl,
     })),
     topics: topics.map(t => ({
       id: t._id,
-      diplay: t.tag,
+      display: t.tag,
     })),
   };
 }
