@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as Actions from '../../../redux/actions';
 import SnippetFeed from './snippetfeed';
@@ -26,6 +27,18 @@ class FeedView extends Component {
         Actions.createSnippet(value.trim())
       );
     }
+  }
+
+  scrollDown() {
+    window.scrollTo(0, ReactDOM.findDOMNode(this).scrollHeight);
+  }
+
+  componentDidMount() {
+    this.scrollDown();
+  }
+
+  componentDidUpdate() {
+    this.scrollDown();
   }
 
   render() {
