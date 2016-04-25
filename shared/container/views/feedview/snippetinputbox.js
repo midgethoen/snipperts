@@ -18,7 +18,7 @@ class SnippetInputBox extends Component {
     let match;
     let text = rawtext;
     const typeMap = { user: '@', topic: '#' };
-    const re = /[@#]\[([\w-_]+)\]\(([^:]+)[^\)]*\)/g;
+    const re = /[@#]\[([\w\.-_]+)\]\(([^:]+)[^\)]*\)/g;
     while (match = re.exec(rawtext)) { //eslint-disable-line
       const [fullMatch, tag, type] = match;
       text = text.replace(fullMatch, `${typeMap[type]}${tag}`);
