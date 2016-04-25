@@ -11,7 +11,7 @@ const snippetSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   text: { type: String },
   topics: [{ type: String, ref: 'Topic' }],
-  mentions: [{ type: String, ref: 'User' }],
+  users: [{ type: String, ref: 'User' }],
 });
 
 const referenceRegex = /([#@])([\w-_]+)/g;
