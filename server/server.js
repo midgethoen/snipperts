@@ -85,7 +85,7 @@ const renderFullPage = (html, initialState) => {
     <!DOCTYPE html>
     <html lang="en">
       <head>
-        <!-- Required meta tags always come first -->
+        <!-- Required meta tags always come first. -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -98,6 +98,7 @@ const renderFullPage = (html, initialState) => {
         <title>Yippie! Snipperts</title>
         <link rel="stylesheet" href=${cssPath} />
         <link href='https://fonts.googleapis.com/css?family=Open%20Sans:400,300,700' rel='stylesheet' type='text/css'/>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
       </head>
       <body>
         <div id="root">${html}</div>
