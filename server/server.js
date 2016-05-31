@@ -98,7 +98,8 @@ const renderFullPage = (html, initialState) => {
         <title>Yippie! Snipperts</title>
         <link rel="stylesheet" href=${cssPath} />
         <link href='https://fonts.googleapis.com/css?family=Open%20Sans:400,300,700' rel='stylesheet' type='text/css'/>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/favicon.ico?v=1200" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico?v=1200" type="image/x-icon">
       </head>
       <body>
         <div id="root">${html}</div>
