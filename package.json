@@ -59,6 +59,7 @@
     "history": "^1.17.0",
     "isomorphic-fetch": "^2.2.1",
     "mocha": "^2.4.5",
+    "moment": "^2.15.1",
     "mongoose": "^4.3.7",
     "mongoose-timestamp": "^0.5.0",
     "morgan": "^1.7.0",

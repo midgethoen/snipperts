@@ -2,14 +2,20 @@ import Snippet from '../models/snippet';
 import cuid from 'cuid';
 import { handleError } from '../util';
 import { io } from '../server';
+import moment from 'moment';
 
 export function getSnippets(req, res) {
-  Snippet.find().sort('createdAt').exec((err, snippets) => {
-    if (err) {
-      return handleError(res, err);
-    }
-    res.json(snippets);
-  });
+  Snippet.find({
+    createdAt: {
+      $gte: moment().startOf('day').subtract(30, 'd'),
+    },
+  }).sort('createdAt')
+    .exec((err, snippets) => {
+      if (err) {
+        return handleError(res, err);
+      }
+      res.json(snippets);
+    });
 }
 
 export function addSnippet(req, res) {
